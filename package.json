@@ -3,10 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start --root ../RocNativeProject/ -- --reset-cache",
-    "start2": "react-native start",
-    "flipper": "/Applications/Flipper.app/Contents/MacOS/Flipper",
     "metro": "react-native start",
+    "npx-bundle": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle",
     "npx-doctor": "npx react-native doctor",
     "npx-info": "npx react-native info",
     "audit": "yarn audit",
@@ -24,30 +22,20 @@
     "clean-gradle-caches": "yarn ./gradlew --stop && rm -rf ~/.gradle/caches/",
     "test": "jest --verbose",
     "lint": "eslint .",
-    "run-android": "react-native run-android",
-    "run-ios": "react-native run-ios",
-    "run-android-es-dev-debug": "yarn env-es-dev react-native run-android --variant esDevDebug --appIdSuffix es.dev",
-    "run-android-es-dev-release": "yarn regenerate-android-bundle && yarn env-es-dev react-native run-android --variant esDevRelease --appIdSuffix es.dev",
-    "run-android-es-qa-debug": "yarn env-es-qa react-native run-android --variant esQaDebug --appIdSuffix es.qa",
-    "run-android-es-qa-release": "yarn regenerate-android-bundle && yarn env-es-qa react-native run-android --variant esQaRelease --appIdSuffix es.qa",
-    "make-apk-base": "export ENVFILE=src/whiteLabel/es/.env && yarn jetify && cd android && ./gradlew assemblebaseDevRelease && cd ..",
-    "make-aab-base": "export ENVFILE=src/whiteLabel/es/.env && yarn jetify && cd android && ./gradlew bundleesDevrelease && cd ..",
-    "make-apk-es-dev": "export ENVFILE=src/whiteLabel/es/.env && yarn jetify && cd android && ./gradlew assembleesDevrelease && cd ..",
-    "make-aab-es-dev": "export ENVFILE=src/whiteLabel/es/.env && yarn jetify && cd android && ./gradlew bundleesDevrelease && cd ..",
+    "run-android-debug": "react-native run-android",
+    "run-android-release": "react-native run-android --variant=release",
+    "make-apk": "yarn regenerate-android-bundle && yarn jetify && cd android && ./gradlew assemblerelease && cd ..",
+    "make-aab": "yarn regenerate-android-bundle && yarn jetify && cd android && ./gradlew bundlerelease && cd ..",
+    "update-react-native": "npx react-native upgrade",
+    
     "env-es-dev": "ENVFILE=src/whiteLabel/es/.env",
-    "env-es-qa": "ENVFILE=src/whiteLabel/es/.env.qa",
-    "env-es-prod": "ENVFILE=src/whiteLabel/es/.env.production",
-    "env-uk-dev": "ENVFILE=src/whiteLabel/uk/.env",
-    "env-uk-qa": "ENVFILE=src/whiteLabel/uk/.env.qa",
-    "env-uk-prod": "ENVFILE=src/whiteLabel/uk/.env.production",
-    "env-us-dev": "ENVFILE=src/whiteLabel/us/.env",
-    "env-us-qa": "ENVFILE=src/whiteLabel/us/.env.qa",
-    "env-us-prod": "ENVFILE=src/whiteLabel/us/.env.production",
-    "update-react-native": "npx react-native upgrade"
+    "run-android-es-dev-debug": "yarn env-es-dev react-native run-android --variant esDevDebug --appIdSuffix es.dev",
+    "run-android-es-dev-release": "yarn regenerate-android-bundle && yarn env-es-dev react-native run-android --variant esDevRelease --appIdSuffix es.dev"
   },
   "dependencies": {
     "react": "17.0.1",
-    "react-native": "0.64.2"
+    "react-native": "0.64.2",
+    "react-native-snap-carousel": "^3.9.1"
   },
   "devDependencies": {
     "@babel/core": "7.15.0",
